@@ -1,0 +1,80 @@
+***************
+***** git *****
+***************
+
+resource:
+	https://learngitbranching.js.org/
+
+framework:
+	remote_history(origin)
+	local history:
+		work tree
+	raw files
+
+component:
+	raw files
+	commits
+	ref, tag
+
+How to create a repo?
+	git init: create an empty repo
+	git clone: copy a exsiting repo
+
+Branches:
+	list all branches: git branche
+	create new branch: git branch [branchName]
+	delete a branch: git branch -d [branchName]
+	switch to another branch:
+		###move HEAD
+		git checkout(old)/switch(new)
+		create new branch and switch to it: git checkout -b [branchName]
+		git checkout ^[times]: move to ith parent
+		git checkout ~[times]: move to the ith ancestor
+		git reset [ref] ###move HEAD to ref
+		git revert ###commit with reverse operation, so as to be seen in remote
+
+		###move any ref
+		git branch -f [source] [dest]
+	merge: git merge / git rebase
+	
+Commits:
+	create commits: git commits
+	move around the commits:
+		git rebase ###change parent
+		git rebase -i(for interface) [ref] ###can activate, deactivate and reorder commits
+		git rebase [dest] [source] ### rebase to the dest from the source
+		git cherry-pick ###select childs 
+	amend commit: git commit --amend
+	
+Tag: ###can use as branch ref
+	create tag: git tag [tagName] [ref]
+	
+Get info from HEAD to the nearest tag:
+	command: git describe main
+	explanation: return value [the nearest tag]_[steps]_g[commit_hash]
+	
+remote:
+	local ref of remote/main: origin/main
+	clone a repo: git clone
+	update local (repo) from remote: git fetch
+		git fetch origin [destination]
+		git fetch origin [source]:[destination]
+	update local from remote and merge: git pull
+		git pull origin [branchName]
+		git pull origin [source]:[destination]
+	update remote from local: git push
+		git push [default] [default]
+		git push [upstream] [branch]
+		push from source to different destination: git push origin [source]:[destination]
+	update remote from local when remote has permission: git pull request
+	set track:
+		way1: git checkout -b [branchNmae] o/main
+		way2: git branch -u(for upstream) [upstreamName] [branchName]
+	check remote branch: git branch -r
+	
+	NOTE:
+		Behaviours of "git push" and "git fetch" with empty argument are weird. The former one will delete remote branch. The latter one will add local branch.
+		git pull is nothing more but fetch + merge.
+		
+TODO:
+	behavior of "git base [dest] [src]"???
